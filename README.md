@@ -14,9 +14,9 @@ The generated file is **self-contained** — your app has zero runtime dependenc
 ## Install
 
 ```bash
-pnpm add -D @weewee/tailwind-typed   # requires tailwindcss v4 (peer)
+pnpm add -D @weewee/tailwind-typed
 ```
-
+Requires tailwindcss v4 (peer)
 ## Quick start (Vite)
 
 ```ts
