@@ -1,4 +1,4 @@
-# @weewee/tailwind-typed
+# @adamkindberg/tailwind-typed
 
 > Turn your **Tailwind v4** theme into a fully-typed, importable module — so you can use your colors, spacing, and brand tokens **anywhere**, including places Tailwind classes can't reach (OG-image / metadata generators, emails, inline styles, CSS-in-JS, canvas…).
 
@@ -14,7 +14,7 @@ The generated file is **self-contained** — your app has zero runtime dependenc
 ## Install
 
 ```bash
-pnpm add -D @weewee/tailwind-typed
+pnpm add -D @adamkindberg/tailwind-typed
 ```
 Requires tailwindcss v4 (peer)
 ## Quick start (Vite)
@@ -22,7 +22,7 @@ Requires tailwindcss v4 (peer)
 ```ts
 // vite.config.ts
 import { defineConfig } from 'vite'
-import tailwindTyped from '@weewee/tailwind-typed/vite'
+import tailwindTyped from '@adamkindberg/tailwind-typed/vite'
 
 export default defineConfig({
   plugins: [tailwindTyped()], // auto-detects your CSS entry; regenerates on @theme changes (HMR)
@@ -134,7 +134,7 @@ Options can come from CLI flags, the Vite plugin argument, or a `tailwind-typed`
 ## Programmatic API
 
 ```ts
-import { generate, check, buildModule, resolveTheme, generateModule } from '@weewee/tailwind-typed'
+import { generate, check, buildModule, resolveTheme, generateModule } from '@adamkindberg/tailwind-typed'
 
 await generate({ cwd, input, out })   // build + write (returns { changed, outPath, tokenCount, … })
 await check({ cwd, input, out })      // build + compare (returns { upToDate, … })

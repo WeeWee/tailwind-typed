@@ -1,5 +1,5 @@
 {
-  "name": "@weewee/tailwind-typed",
+  "name": "@adamkindberg/tailwind-typed",
   "version": "0.0.1",
   "description": "Generate fully-typed, importable access to your Tailwind v4 theme tokens (CSS variables + resolved values) for use anywhere, including non-Tailwind contexts.",
   "author": "WeeWee",
