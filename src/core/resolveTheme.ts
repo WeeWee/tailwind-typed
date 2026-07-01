@@ -52,9 +52,15 @@ function normalizeValue(value: string | null): string {
 export async function resolveTheme(opts: ResolveThemeOptions): Promise<TokenSet> {
   const base = opts.base ?? process.cwd()
   const defaults = opts.defaultThemeCss ?? loadDefaultThemeCss(base)
-  // Strip @import rules so the design system never tries to resolve them; the
-  // defaults are already inlined above, and only @theme data matters here.
-  const userCss = opts.css.replace(/@import\s+[^;]+;/g, '')
+  // Strip @import/@plugin/@config rules so the design system never tries to
+  // resolve them; the defaults are already inlined above, and only @theme data
+  // matters here. @plugin/@config declare no theme tokens, and leaving them in
+  // makes Tailwind demand a `loadModule` callback we don't supply — crashing the
+  // CLI/programmatic path with "No `loadModule` function provided to `compile`".
+  const userCss = opts.css
+    .replace(/@import\s+[^;]+;/g, '')
+    .replace(/@plugin\s+[^;]+;/g, '')
+    .replace(/@config\s+[^;]+;/g, '')
   const combined = `${defaults}\n${userCss}`
 
   const designSystem = await __unstable__loadDesignSystem(combined, { base })
