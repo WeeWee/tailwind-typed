@@ -42,6 +42,19 @@ describe('resolveTheme', () => {
     expect(byNamespace.color.brand.value).toBe('#5b21b6')
   })
 
+  it('tolerates @plugin and @config statements in the user CSS', async () => {
+    const css = `
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+@config "./tailwind.config.js";
+@theme {
+  --color-brand: #5b21b6;
+}
+`
+    const { byNamespace } = await resolveTheme({ css })
+    expect(byNamespace.color.brand.value).toBe('#5b21b6')
+  })
+
   it('skips paired sub-property keys like --text-lg--line-height', async () => {
     const { tokens, byNamespace } = await resolveTheme({ css: userCss })
     expect(tokens.some((t) => t.key.includes('--'))).toBe(false)
